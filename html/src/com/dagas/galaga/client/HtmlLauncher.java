@@ -3,16 +3,17 @@ package com.dagas.galaga.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import com.dagas.galaga.GalagaGame;
+import com.dagas.galaga.game.GalagaGame;
 
 public class HtmlLauncher extends GwtApplication {
 
         @Override
         public GwtApplicationConfiguration getConfig () {
                 // Resizable application, uses available space in browser
-                return new GwtApplicationConfiguration(true);
-                // Fixed size application:
-                //return new GwtApplicationConfiguration(480, 320);
+                // return new GwtApplicationConfiguration(true);
+                
+        		// Fixed size application:
+                return new GwtApplicationConfiguration(800, 480);
         }
 
         @Override
