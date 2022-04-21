@@ -1,28 +1,30 @@
 package com.dagas.core;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.dagas.galaga.entities.PlayerShip;
 
 public abstract class DagasScreen implements Screen {
 
 	public DagasGame game;
 	public OrthographicCamera camera;
-	public PlayerShip playerShip;
+	
+	public float screenTimeCounter;
+	public Color screenColor;
 
 	/*
 	 * Constructor
 	 */
-	public DagasScreen(DagasGame aGame) {
+	public DagasScreen(DagasGame aGame, Color aScreenColor) {
 		this.game = aGame;
 
 		// create the camera and the SpriteBatch
 		this.camera = new OrthographicCamera();
-		this.camera.setToOrtho(false, this.game.screenWidth, this.game.screenHeight);
-
-		this.playerShip = new PlayerShip();
-
+		this.camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		this.screenTimeCounter = 0;
+		this.screenColor = aScreenColor;
 	}
 
 	/*
@@ -37,12 +39,11 @@ public abstract class DagasScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-
-		ScreenUtils.clear(this.game.screenColor);
-
+		// In my pixelbook go , delta is around 0.01 and 0.02
 		this.game.batch.setProjectionMatrix(camera.combined);
-
 		this.camera.update();
+		this.screenTimeCounter += delta;
+		ScreenUtils.clear(this.screenColor);
 	}
 
 	@Override
@@ -71,8 +72,7 @@ public abstract class DagasScreen implements Screen {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-
+		this.game.batch.dispose();
 	}
 
 }

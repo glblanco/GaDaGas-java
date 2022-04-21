@@ -9,17 +9,14 @@ public class GalagaGame extends DagasGame {
 	@Override
 	public void create() {
 		super.create();
-		this.screenWidth = 800; // for this game
-		this.screenHeight = 480; // for this game
-		this.screenColor = Color.WHITE; // for this game
-		
+		this.screenColor = Color.BLACK; // for this game
 		this.setScreen(new MainMenuScreen(this));
 	}
 
 	@Override
 	public void render() {
 		super.render(); // important!
-		
+
 	}
 
 	@Override

@@ -9,19 +9,13 @@ public class DagasGame extends Game {
 
 	public SpriteBatch batch;
 	public BitmapFont font;
-	public int screenWidth;
-	public int screenHeight;
 	public Color screenColor;
 
 	@Override
 	public void create() {
-
 		this.batch = new SpriteBatch();
 		this.font = new BitmapFont(); // use libGDX's default Arial font
-		this.screenWidth = 800; // default
-		this.screenHeight = 480; // default 
-		this.screenColor = Color.WHITE; // default
-
+		this.screenColor = Color.BLACK; // default
 	}
 
 	@Override

@@ -8,8 +8,8 @@ import com.dagas.core.DagasScreen;
 public class MainMenuScreen extends DagasScreen {
 
 	public MainMenuScreen(DagasGame aGame) {
-		super(aGame);
-		this.game.screenColor = Color.BLACK;
+		super(aGame, Color.BLACK);
+
 	}
 
 	@Override

@@ -5,26 +5,37 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.dagas.core.DagasGame;
 import com.dagas.core.DagasScreen;
+import com.dagas.galaga.entities.AlienShipPurple;
+import com.dagas.galaga.entities.Platoon;
 import com.dagas.galaga.entities.PlayerShip;
 
 public class GameScreen extends DagasScreen {
 
+	public String debugTitle;
 	public Music galagaNewGameSong;
+
+	// actors
 	public PlayerShip playerShip;
+	public Platoon platoon;
 
 	public GameScreen(DagasGame game) {
-		super(game);
-		this.game.screenColor = Color.BLUE;
+		super(game, Color.BLACK);
 		this.galagaNewGameSong = Gdx.audio.newMusic(Gdx.files.internal("galagaNewGameSong.mp3"));
-		this.playerShip = new PlayerShip();
+		this.playerShip = new PlayerShip(50, 50);
+		this.platoon = new Platoon();
+		this.debugTitle = "Game Screen";
 	}
 
 	@Override
 	public void render(float delta) {
 		super.render(delta);
+		this.debugTitle = "Delta : " + delta;
+
 		this.game.batch.begin();
-		this.game.font.draw(game.batch, "GAME SCREEN", 0, 480);
-		this.playerShip.render(this.game.batch);
+
+		this.playerShip.render(this.game, this.screenTimeCounter, delta);
+		this.platoon.render(this.game, this.screenTimeCounter, delta);
+
 		this.game.batch.end();
 	}
 
@@ -52,7 +63,8 @@ public class GameScreen extends DagasScreen {
 	@Override
 	public void dispose() {
 		super.dispose();
-		this.playerShip.dispose(this.game.batch);
+		this.playerShip.dispose();
+		this.platoon.dispose();
 	}
 
 }
